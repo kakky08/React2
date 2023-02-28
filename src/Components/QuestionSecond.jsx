@@ -1,12 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { QUESTION } from "../consts/question";
 import { setQuestionSecond } from "../stores/interviewSlice";
 
 
 export const QuestionSecond = () => {
 	const dispatch = useDispatch();
+	const questionSecond = useSelector(state => state.interview.questionnaire.questionSecond);
 
 	const box = css`
 		margin-bottom: 16px;
@@ -22,12 +24,13 @@ export const QuestionSecond = () => {
 
 	return (
 		<div css={box}>
-			<label css={label} htmlFor="questionSecond">現在入院中ですか。または、最近3ヶ月以内に医師の診察・検査の結果、入院をすすめられたことはありますか？</label>
+			<label css={label} htmlFor="questionSecond">{ QUESTION.SECOND_TITLE }</label>
 			<input
 				css={input}
 				type="radio"
 				className=""
 				name="questionSecond"
+				checked={"はい" === questionSecond}
 				value="はい"
 				onChange={(e) => dispatch(setQuestionSecond(e.target.value))}
 			/>はい
@@ -36,6 +39,7 @@ export const QuestionSecond = () => {
 				type="radio"
 				className=""
 				name="questionSecond"
+				checked={"いいえ" === questionSecond}
 				value="いいえ"
 				onChange={(e) => dispatch(setQuestionSecond(e.target.value))}
 			/>いいえ

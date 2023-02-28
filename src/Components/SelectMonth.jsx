@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMonth } from "../stores/interviewSlice";
 
 export const SelectMonth = () => {
 
     const dispatch = useDispatch();
+	const month = useSelector(state => state.interview.questionnaire.month);
 
     const monthOptions = () => {
         const month = [];
@@ -37,6 +38,7 @@ export const SelectMonth = () => {
 			<select
 				css={small}
 				name="month"
+				value={month}
 				onChange={(e) => dispatch(setMonth(e.target.value))}
 			>
 				<option selected>----</option>

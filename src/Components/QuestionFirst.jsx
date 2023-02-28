@@ -1,12 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { QUESTION } from "../consts/question";
 import { setQuestionFirst } from "../stores/interviewSlice";
 
 
 export const QuestionFirst = () => {
 	const dispatch = useDispatch();
+	const questionFirst = useSelector(state => state.interview.questionnaire.questionFirst);
 
 	const box = css`
 		margin-bottom: 16px;
@@ -22,12 +24,13 @@ export const QuestionFirst = () => {
 
 	return (
 		<div css={box}>
-			<label css={label} htmlFor="questionFirst">現在、生命保険に加入されていますか？</label>
+			<label css={label} htmlFor="questionFirst">{ QUESTION.FIRST_TITLE }</label>
 			<input
 				css={input}
 				type="radio"
 				className=""
 				name="questionFirst"
+				checked={"はい" === questionFirst}
 				value="はい"
 				onChange={(e) => dispatch(setQuestionFirst(e.target.value))}
 			/>はい
@@ -36,6 +39,7 @@ export const QuestionFirst = () => {
 				type="radio"
 				className=""
 				name="questionFirst"
+				checked={"いいえ" === questionFirst}
 				value="いいえ"
 				onChange={(e) => dispatch(setQuestionFirst(e.target.value))}
 			/>いいえ

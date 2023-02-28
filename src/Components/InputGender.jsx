@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setGender } from "../stores/interviewSlice";
 
 export const InputGender = () => {
 	const dispatch = useDispatch();
+	const gender = useSelector(state => state.interview.questionnaire.gender);
 
 	const box = css`
 		margin-bottom: 16px;
@@ -26,6 +27,7 @@ export const InputGender = () => {
 				type="radio"
 				className=""
 				name="gender"
+				checked={'男性' === gender}
 				value="男性"
 				onChange={() => dispatch(setGender('男性'))}
 			/>男性
@@ -34,6 +36,7 @@ export const InputGender = () => {
 				type="radio"
 				className=""
 				name="gender"
+				checked={'女性' === gender}
 				value="女性"
 				onChange={() => dispatch(setGender('女性'))}
 			/>女性
