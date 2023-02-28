@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setConsultationContent } from "../stores/interviewSlice";
 import { BackButton } from "../Components/common/BackButton";
 import { MoveOnButton } from "../Components/common/MoveOnButton";
 
 export const ConsultationContent = () => {
 	const dispatch = useDispatch();
+	const consultationContent = useSelector(state => state.interview.questionnaire.consultationContent);
 
 		const form_page = css`
 		display: flex;
@@ -77,6 +78,7 @@ export const ConsultationContent = () => {
 						name="consultationContent"
 						cols="30"
 						rows="10"
+						value={consultationContent}
 						onChange={(e) => dispatch(setConsultationContent(e.target.value))}
 					>
 					</textarea>
@@ -87,7 +89,7 @@ export const ConsultationContent = () => {
 					endpoint={'/step2'}
 				/>
 				<MoveOnButton
-					endpoint={'#'}
+					endpoint={'/step4'}
 				/>
 			</div>
 		</div>

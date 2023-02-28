@@ -1,12 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { setYear } from "../stores/interviewSlice";
 
 export const SelectYear = () => {
 
 	const dispatch = useDispatch();
+	const year = useSelector(state => state.interview.questionnaire.year);
+
 
     const yearOptions = () => {
         const year = [];
@@ -48,6 +51,7 @@ export const SelectYear = () => {
 				css={medium}
 				className="select _medium"
 				name="year"
+				value={year}
 				onChange={(e) => dispatch(setYear(e.target.value))}
 			>
 				<option selected>----</option>

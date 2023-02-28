@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDay } from "../stores/interviewSlice";
 
 export const SelectDay = () => {
 
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const day = useSelector(state => state.interview.questionnaire.day);
 
     const dayOptions = () => {
         const day = [];
@@ -38,6 +39,7 @@ export const SelectDay = () => {
 				css={small}
 				className="select _small"
 				name="day"
+				value={day}
 				onChange={(e) => dispatch(setDay(e.target.value))}
 			>
 				<option selected>----</option>

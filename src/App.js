@@ -4,6 +4,7 @@ import { BasicInformation } from './pages/BasicInformation';
 import { ConsultationContent } from './pages/ConsultationContent';
 import { Home } from './pages/Home';
 import { QuestionnaireForm } from './pages/QuestionnaireForm';
+import { Verification } from './pages/Verification';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/step1' element={<BasicInformation />} />
         <Route path='/step2' element={<QuestionnaireForm />} />
         <Route path='/step3' element={<ConsultationContent />} />
+        <Route path='/step4' element={<Verification />} />
       </Routes>
     </div>
   );
